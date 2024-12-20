@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Практика 4</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>Практическая работа №4</h1>
+    
+    <div>
+        <h3>Задача 1: Среднее арифметическое положительных элементов</h3>
+        <button onclick="показатьРезультат1()">Выполнить</button>
+        <div id="результат1" class="result"></div>
+    </div>
+
+    <div>
+        <h3>Задача 2: Замена отрицательных элементов</h3>
+        <input type="text" id="массив2" placeholder="Введите числа через запятую">
+        <button onclick="показатьРезультат2()">Выполнить</button>
+        <div id="результат2" class="result"></div>
+    </div>
+
+    <div>
+        <h3>Задача 3: Статистика массива</h3>
+        <input type="text" id="массив3" placeholder="Введите числа через запятую">
+        <button onclick="показатьРезультат3()">Выполнить</button>
+        <div id="результат3" class="result"></div>
+    </div>
+
+    <div>
+        <h3>Задача 4: Симулятор цветов</h3>
+        <button onclick="показатьРезультат4()">Запустить симуляцию</button>
+        <div id="результат4" class="result"></div>
+    </div>
+
+    <script src="массивы.js"></script>
+    <script>
+        function показатьРезультат1() {
+            const результат = среднееПоложительных();
+            document.getElementById('результат1').innerHTML = 
+                `Массив: [${результат.исходныйМассив.join(', ')}]<br>
+                 Среднее положительных: ${результат.среднееЗначение.toFixed(2)}`;
+        }
+
+        function показатьРезультат2() {
+            const входныеДанные = document.getElementById('массив2').value
+                .split(',')
+                .map(Number);
+            const результат = заменаОтрицательных(входныеДанные);
+            document.getElementById('результат2').innerHTML = 
+                `Результат: [${результат.join(', ')}]`;
+        }
+
+        function показатьРезультат3() {
+            const входныеДанные = document.getElementById('массив3').value
+                .split(',')
+                .map(Number);
+            const результат = статистикаМассива(входныеДанные);
+            document.getElementById('результат3').innerHTML = 
+                `Среднее положительных: ${результат.среднееПоложительных.toFixed(2)}<br>
+                 Среднее отрицательных: ${результат.среднееОтрицательных.toFixed(2)}<br>
+                 Количество нулей: ${результат.количествоНулей}`;
+        }
+
+        function показатьРезультат4() {
+            const результат = симуляторЦветов();
+            document.getElementById('результат4').innerHTML = 
+                `Максимальное число последовательных красных: ${результат}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор и другие задачи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Калькулятор и математические операции</h2>
+    <div id="results"></div>
+
+    <script>
+        function выводРезультата(текст) {
+            const div = document.createElement('div');
+            div.className = 'result';
+            div.textContent = текст;
+            document.getElementById('results').appendChild(div);
+        }
+
+        // Задача 1: Ввод числа
+        let число = prompt("Введите любое число:");
+        выводРезультата(`Введенное число: ${число}`);
+
+        // Задача 2: Калькулятор
+        let число1 = parseFloat(prompt("Калькулятор\nВведите первое число:"));
+        let число2 = parseFloat(prompt("Введите второе число:"));
+        
+        if (!isNaN(число1) && !isNaN(число2)) {
+            выводРезультата(`Результаты операций:
+            Сложение: ${число1 + число2}
+            Вычитание: ${число1 - число2}
+            Умножение: ${число1 * число2}
+            Деление: ${число2 !== 0 ? число1 / число2 : "Деление на ноль невозможно"}`);
+        } else {
+            выводРезультата("Ошибка: Введены некорректные числа");
+        }
+
+        // Задача 3: Угадывание числа
+        let результат = parseFloat(prompt("Задумайте число, умножьте его на 2 и прибавьте 7.\nВведите полученный результат:"));
+        if (!isNaN(результат)) {
+            let задуманноеЧисло = (результат - 7) / 2;
+            выводРезультата(`Вы задумали число: ${задуманноеЧисло}`);
+        } else {
+            выводРезультата("Ошибка: Введено некорректное число");
+        }
+
+        // Задача 4: Вычисление возраста
+        let имя = prompt("Введите ваше имя:");
+        let годРождения = parseInt(prompt("Введите год вашего рождения:"));
+        
+        if (!isNaN(годРождения) && имя) {
+            let возраст = new Date().getFullYear() - годРождения;
+            выводРезультата(`${имя}: ${возраст}`);
+            // Дополнительно выводим через document.write() как требуется в задании
+            document.write(`<p>${имя}: ${возраст}</p>`);
+        } else {
+            выводРезультата("Ошибка: Введены некорректные данные");
+        }
+    </script>
+</body>
+</html>
