@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Задания</title>
+    <style>
+        .task {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Задание 1: Реализация блок-схемы поиска наибольшего числа -->
+        <div class="task" id="task1">
+            <h2>Задание 1: Блок-схема</h2>
+            <button onclick="task1()">Запустить</button>
+            <!-- Сюда будет выводиться результат -->
+            <div id="result1"></div>
+        </div>
+
+        <!-- Задание 2: Демонстрация работы цикла for -->
+        <div class="task" id="task2">
+            <h2>Задание 2: Счёт от 1 до 10</h2>
+            <button onclick="task2()">Запустить</button>
+            <div id="result2"></div>
+        </div>
+
+        <!-- Задание 3: Демонстрация работы цикла do-while -->
+        <div class="task" id="task3">
+            <h2>Задание 3: Программа для застолий</h2>
+            <button onclick="task3()">Запустить</button>
+            <div id="result3"></div>
+        </div>
+
+        <!-- Задание 4: Вычисление факториала -->
+        <div class="task" id="task4">
+            <h2>Задание 4: Факториал числа</h2>
+            <input type="number" id="numberInput" placeholder="Введите номер из журнала">
+            <button onclick="task4()">Вычислить</button>
+            <div id="result4"></div>
+        </div>
+
+        <!-- Задание 5: Проверка строки на палиндром -->
+        <div class="task" id="task5">
+            <h2>Задание 5: Проверка на палиндром</h2>
+            <input type="text" id="surnameInput" placeholder="Введите фамилию">
+            <button onclick="task5()">Проверить</button>
+            <div id="result5"></div>
+        </div>
+
+        <!-- Задание 6: Поиск простых чисел -->
+        <div class="task" id="task6">
+            <h2>Задание 6: Простые числа</h2>
+            <input type="number" id="journalNumber" placeholder="Введите номер из журнала">
+            <button onclick="task6()">Найти простые числа</button>
+            <div id="result6"></div>
+        </div>
+    </div>
+
+    <script>
+        // Задание 1: Реализация блок-схемы
+        function task1() {
+            // Получаем три числа от пользователя
+            let x = parseInt(prompt("Введите x:"));
+            let y = parseInt(prompt("Введите y:"));
+            let z = parseInt(prompt("Введите z:"));
+            
+            let result = "";
+            // Реализация логики блок-схемы через вложенные условия
+            if (x > y) {
+                if (x > z) {
+                    result = "x наибольшее";
+                } else {
+                    result = "z наибольшее";
+                }
+            } else {
+                if (y > z) {
+                    result = "y наибольшее";
+                } else {
+                    result = "z наибольшее";
+                }
+            }
+            // Выводим результат на страницу
+            document.getElementById("result1").innerHTML = result;
+        }
+
+        // Задание 2: Счёт от 1 до 10
+        function task2() {
+            let result = "";
+            // Используем цикл for для подсчёта от 1 до 10
+            for(let i = 1; i <= 10; i++) {
+                result += i + "<br>"; // Добавляем перенос строки после каждого числа
+            }
+            document.getElementById("result2").innerHTML = result;
+        }
+
+        // Задание 3: Программа для застолий
+        function task3() {
+            let result = "";
+            // Используем do-while для повторения вопроса
+            do {
+                let answer = prompt("Еще по одной? (введите 1 для выхода)");
+                result += "Ответ: " + answer + "<br>";
+                // Выходим из цикла если введена 1
+                if(answer === "1") break;
+            } while(true);
+            document.getElementById("result3").innerHTML = result;
+        }
+
+        // Задание 4: Вычисление факториала
+        function task4() {
+            // Получаем число из поля ввода
+            let num = document.getElementById("numberInput").value;
+            let factorial = 1;
+            // Вычисляем факториал через цикл
+            for(let i = 1; i <= num; i++) {
+                factorial *= i;
+            }
+            // Выводим результат используя шаблонную строку
+            document.getElementById("result4").innerHTML = 
+                `Факториал числа ${num} = ${factorial}`;
+        }
+
+        // Задание 5: Проверка на палиндром
+        function task5() {
+            // Получаем фамилию из поля ввода
+            let surname = document.getElementById("surnameInput").value;
+            // Переворачиваем строку: разбиваем на массив, разворачиваем, соединяем
+            let reversed = surname.toLowerCase().split('').reverse().join('');
+            // Сравниваем исходную строку с перевёрнутой
+            let isPalindrome = surname.toLowerCase() === reversed;
+            // Выводим результат используя тернарный оператор
+            document.getElementById("result5").innerHTML = 
+                isPalindrome ? "Это палиндром!" : "Это не палиндром";
+        }
+
+        // Функция проверки числа на простоту
+        function isPrime(num) {
+            // Проверяем делится ли число на что-либо кроме 1 и себя
+            for(let i = 2; i < num; i++)
+                if(num % i === 0) return false;
+            return num > 1;
+        }
+
+        // Задание 6: Поиск простых чисел
+        function task6() {
+            // Получаем число из поля ввода
+            let num = document.getElementById("journalNumber").value;
+            let primes = [];
+            // Проверяем каждое число от 1 до введённого на простоту
+            for(let i = 1; i <= num; i++) {
+                if(isPrime(i)) primes.push(i);
+            }
+            // Выводим результат, соединяя массив запятыми
+            document.getElementById("result6").innerHTML = 
+                `Простые числа до ${num}: ${primes.join(', ')}`;
+        }
+    </script>
+</body>
+</html>
