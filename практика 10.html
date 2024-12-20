@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Работа с объектами</title>
+    <style>
+        .task {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .task-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="task">
+        <div class="task-title">Задание 1: Объект с методом</div>
+        <div id="task1"></div>
+    </div>
+
+    <div class="task">
+        <div class="task-title">Задание 2: Информация о покупателе</div>
+        <div id="task2"></div>
+    </div>
+
+    <div class="task">
+        <div class="task-title">Задание 3: Пользователи, заказы и рестораны</div>
+        <div id="task3"></div>
+    </div>
+
+    <div class="task">
+        <div class="task-title">Задание 4: Список группы</div>
+        <div id="task4"></div>
+    </div>
+
+    <div class="task">
+        <div class="task-title">Задание 5: Объект студент</div>
+        <div id="task5"></div>
+    </div>
+
+    <script>
+        // Задание 1
+        let user = {
+            name: "Джон",
+            age: 30,
+            sayHi() {
+                document.getElementById('task1').innerHTML += `Привет от ${this.name}!<br>`;
+            }
+        };
+        user.sayHi();
+
+        // Задание 2
+        let customer = {
+            name: "Анна",
+            age: 25,
+            email: "anna@gmail.com",
+            address: "ул. Пушкина, 10",
+            phone: "+7 999 123-45-67"
+        };
+        document.getElementById('task2').innerHTML = 
+            `Имя: ${customer.name}<br>
+             Email: ${customer.email}<br>
+             Телефон: ${customer.phone}`;
+
+        // Задание 3
+        let users = {
+            user1: { name: "Иван", age: 25 },
+            user2: { name: "Мария", age: 30 }
+        };
+
+        let orders = {
+            order1: { id: 1, userId: "user1", dish: "Пицца" },
+            order2: { id: 2, userId: "user2", dish: "Суши" }
+        };
+
+        let restaurants = {
+            rest1: { name: "Папа Джонс", rating: 4.5 },
+            rest2: { name: "Алло, Пицца?", rating: 4.8 }
+        };
+
+        document.getElementById('task3').innerHTML = 
+            `Заказы пользователей с рейтингом ресторана выше 4.6:<br>`;
+        for (let order in orders) {
+            if (order === 'order2') {
+                document.getElementById('task3').innerHTML += 
+                    `${users[orders[order].userId].name} заказал(а) ${orders[order].dish} 
+                     в ресторане ${restaurants.rest2.name}<br>`;
+            }
+        }
+
+        // Задание 4
+        function Student(name) {
+            this.name = name;
+            this.group = "Группа 123";
+        }
+
+        let students = [
+            new Student("Василий"),
+            new Student("Мария"),
+            new Student("Александр")
+        ];
+
+        let studentsOutput = "";
+        students.forEach(student => {
+            studentsOutput += `${student.name} - ${student.group}<br>`;
+        });
+        document.getElementById('task4').innerHTML = studentsOutput;
+
+        // Задание 5
+        function StudentInfo(name, age, course) {
+            this.name = name;
+            this.age = age;
+            this.course = course;
+
+            this.introduce = function() {
+                return `Меня зовут ${this.name}, я учусь на ${this.course} курсе`;
+            };
+        }
+
+        let student1 = new StudentInfo("Петр", 20, 2);
+        document.getElementById('task5').innerHTML = student1.introduce();
+    </script>
+</body>
+</html>
