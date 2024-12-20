@@ -14,29 +14,27 @@
 </head>
 <body>
     <div class="container">
-        <!-- Задание 1: Реализация блок-схемы поиска наибольшего числа -->
+        <!-- Реализация блок-схемы поиска наибольшего числа -->
         <div class="task" id="task1">
             <h2>Задание 1: Блок-схема</h2>
             <button onclick="task1()">Запустить</button>
-            <!-- Сюда будет выводиться результат -->
             <div id="result1"></div>
         </div>
 
-        <!-- Задание 2: Демонстрация работы цикла for -->
+        <!--  Демонстрация работы цикла for -->
         <div class="task" id="task2">
             <h2>Задание 2: Счёт от 1 до 10</h2>
             <button onclick="task2()">Запустить</button>
             <div id="result2"></div>
         </div>
 
-        <!-- Задание 3: Демонстрация работы цикла do-while -->
+        <!--  Демонстрация работы цикла do-while -->
         <div class="task" id="task3">
             <h2>Задание 3: Программа для застолий</h2>
             <button onclick="task3()">Запустить</button>
             <div id="result3"></div>
         </div>
 
-        <!-- Задание 4: Вычисление факториала -->
         <div class="task" id="task4">
             <h2>Задание 4: Факториал числа</h2>
             <input type="number" id="numberInput" placeholder="Введите номер из журнала">
@@ -44,7 +42,6 @@
             <div id="result4"></div>
         </div>
 
-        <!-- Задание 5: Проверка строки на палиндром -->
         <div class="task" id="task5">
             <h2>Задание 5: Проверка на палиндром</h2>
             <input type="text" id="surnameInput" placeholder="Введите фамилию">
@@ -52,7 +49,6 @@
             <div id="result5"></div>
         </div>
 
-        <!-- Задание 6: Поиск простых чисел -->
         <div class="task" id="task6">
             <h2>Задание 6: Простые числа</h2>
             <input type="number" id="journalNumber" placeholder="Введите номер из журнала">
@@ -62,7 +58,7 @@
     </div>
 
     <script>
-        // Задание 1: Реализация блок-схемы
+        // Реализация блок-схемы
         function task1() {
             // Получаем три числа от пользователя
             let x = parseInt(prompt("Введите x:"));
@@ -88,7 +84,7 @@
             document.getElementById("result1").innerHTML = result;
         }
 
-        // Задание 2: Счёт от 1 до 10
+        // Счёт от 1 до 10
         function task2() {
             let result = "";
             // Используем цикл for для подсчёта от 1 до 10
@@ -98,7 +94,6 @@
             document.getElementById("result2").innerHTML = result;
         }
 
-        // Задание 3: Программа для застолий
         function task3() {
             let result = "";
             // Используем do-while для повторения вопроса
@@ -111,7 +106,7 @@
             document.getElementById("result3").innerHTML = result;
         }
 
-        // Задание 4: Вычисление факториала
+        // Вычисление факториала
         function task4() {
             // Получаем число из поля ввода
             let num = document.getElementById("numberInput").value;
@@ -125,7 +120,7 @@
                 `Факториал числа ${num} = ${factorial}`;
         }
 
-        // Задание 5: Проверка на палиндром
+        // Проверка на палиндром
         function task5() {
             // Получаем фамилию из поля ввода
             let surname = document.getElementById("surnameInput").value;
@@ -146,7 +141,7 @@
             return num > 1;
         }
 
-        // Задание 6: Поиск простых чисел
+        // Поиск простых чисел
         function task6() {
             // Получаем число из поля ввода
             let num = document.getElementById("journalNumber").value;
@@ -155,7 +150,6 @@
             for(let i = 1; i <= num; i++) {
                 if(isPrime(i)) primes.push(i);
             }
-            // Выводим результат, соединяя массив запятыми
             document.getElementById("result6").innerHTML = 
                 `Простые числа до ${num}: ${primes.join(', ')}`;
         }
