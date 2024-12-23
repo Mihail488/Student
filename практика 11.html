@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Практическая работа</title>
+    <style>
+        .task {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="task">
+        <h3>Задание 1: Локальная переменная</h3>
+        <button onclick="task1()">Запустить</button>
+    </div>
+
+    <div class="task">
+        <h3>Задание 2: Проверка палиндрома</h3>
+        <input type="text" id="palindromeInput" placeholder="Введите текст">
+        <button onclick="checkPalindrome()">Проверить</button>
+    </div>
+
+    <div class="task">
+        <h3>Задание 3: Работа с массивом</h3>
+        <button onclick="processArray()">Обработать массив</button>
+    </div>
+
+    <div class="task">
+        <h3>Задание 4: Имя пользователя</h3>
+        <input type="text" id="userNameInput" placeholder="Введите имя">
+        <button onclick="showUserName()">Показать</button>
+    </div>
+
+    <div class="task">
+        <h3>Задание 5: Вывод приветствия</h3>
+        <input type="text" id="greetingInput" placeholder="Введите имя">
+        <button onclick="showGreeting()">Приветствие</button>
+    </div>
+
+    <div class="task">
+        <h3>Задание 6: Перевернуть имя</h3>
+        <input type="text" id="reverseNameInput" placeholder="Введите имя">
+        <button onclick="reverseName()">Перевернуть</button>
+    </div>
+
+    <script>
+        // Задание 1
+        function task1() {
+            function showMessage() {
+                let message = "Привет, я JavaScript!";
+                alert(message);
+            }
+            showMessage();
+            try {
+                alert(message);
+            } catch(e) {
+                alert("Переменная message недоступна вне функции!");
+            }
+        }
+
+        // Задание 2
+        function checkPalindrome() {
+            const text = document.getElementById('palindromeInput').value;
+            const cleanText = text.toLowerCase().replace(/[^а-яa-z0-9]/g, '');
+            const reversed = cleanText.split('').reverse().join('');
+            alert(cleanText === reversed ? 'Это палиндром!' : 'Это не палиндром!');
+        }
+
+        // Задание 3
+        function processArray() {
+            const arr = Array.from({length: 12}, () => Math.floor(Math.random() * 21) - 10);
+            alert('Исходный массив: ' + arr);
+            const processed = arr.map(num => num < 0 ? num * num : num);
+            alert('Обработанный массив: ' + processed);
+        }
+
+        // Задание 4
+        class UserName {
+            constructor(name) {
+                this.name = name;
+            }
+            
+            display() {
+                return `Имя пользователя: ${this.name}`;
+            }
+        }
+
+        function showUserName() {
+            const name = document.getElementById('userNameInput').value;
+            const user = new UserName(name);
+            alert(user.display());
+        }
+
+        // Задание 5
+        class User {
+            constructor(name) {
+                this.name = name;
+            }
+
+            showMessage() {
+                alert('Привет, ' + this.name);
+            }
+        }
+
+        function showGreeting() {
+            const name = document.getElementById('greetingInput').value;
+            const user = new User(name);
+            user.showMessage();
+        }
+
+        // Задание 6
+        class NameReverser {
+            constructor(name) {
+                this.name = name;
+            }
+
+            reverse() {
+                return this.name.split('').reverse().join('');
+            }
+        }
+
+        function reverseName() {
+            const name = document.getElementById('reverseNameInput').value;
+            const reverser = new NameReverser(name);
+            alert(`Перевернутое имя: ${reverser.reverse()}`);
+        }
+    </script>
+</body>
+</html>
+
