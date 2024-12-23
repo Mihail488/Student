@@ -1,0 +1,145 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        H1 { 
+            font-size: 28px; 
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .registration-form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-table td {
+            padding: 10px 0;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="button"],
+        input[type="reset"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        input[type="button"] {
+            background-color: #1a237e;
+            color: white;
+        }
+
+        input[type="reset"] {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .users-list {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .users-list h2 {
+            color: #1a237e;
+            font-size: 20px;
+        }
+    </style>
+    <script>
+        function Complete1() {
+            if(document.Sel3.Pwd.value == document.Sel3.Pwd1.value) {
+                const userId = document.Sel3.Id.value;
+                const userPassword = document.Sel3.Pwd.value;
+                
+                // Сохраняем данные пользователя
+                let users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+                users.push({
+                    id: userId,
+                    timestamp: new Date().toLocaleString()
+                });
+                localStorage.setItem('registeredUsers', JSON.stringify(users));
+                
+                alert("Вас зарегистрировали\nID=" + userId + "\nPassword=" + userPassword);
+                updateUsersList();
+            } else {
+                alert("Ошибка при вводе пароля\nПопробуйте еще раз");
+            }
+        }
+
+        function updateUsersList() {
+            const usersList = document.getElementById('usersList');
+            const users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+            
+            usersList.innerHTML = '<h2>Зарегистрированные пользователи:</h2>';
+            if (users.length > 0) {
+                const ul = document.createElement('ul');
+                users.forEach(user => {
+                    const li = document.createElement('li');
+                    li.textContent = `${user.id} (Зарегистрирован: ${user.timestamp})`;
+                    ul.appendChild(li);
+                });
+                usersList.appendChild(ul);
+            } else {
+                usersList.innerHTML += '<p>Пока нет зарегистрированных пользователей</p>';
+            }
+        }
+
+        // Вызываем при загрузке страницы
+        window.onload = updateUsersList;
+    </script>
+</head>
+<body>
+    <H1>Регистрация</H1>
+    <FORM NAME="Sel3" class="registration-form">
+        <TABLE class="form-table">
+            <TR>
+                <TD><B>Идентификатор:</B></TD>
+                <TD><INPUT NAME="Id" SIZE=20 onBlur="this.value=this.value.toUpperCase()"></TD>
+            </TR>
+            <TR>
+                <TD><B>Пароль:</B></TD>
+                <TD><INPUT TYPE="password" NAME="Pwd" SIZE=20 onFocus="this.select();"></TD>
+            </TR>
+            <TR>
+                <TD><B>Проверка пароля:</B></TD>
+                <TD><INPUT TYPE="password" NAME="Pwd1" SIZE=20 onFocus="this.select();"></TD>
+            </TR>
+        </TABLE>
+        <INPUT TYPE="button" VALUE="Готово" onClick="Complete1();">
+        <INPUT TYPE="reset" VALUE="Сброс">
+    </FORM>
+    <div id="usersList" class="users-list"></div>
+</body>
+</html>
+
