@@ -12,7 +12,7 @@ const bankClient = {
 
 const clinicEmployee = {
     [clinicEmployeeId]: "CE456",
-    name: "Петрова Мария",
+    name: "Николай Наумов",
     position: "Врач",
     department: "Терапия"
 };
