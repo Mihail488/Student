@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Практическая работа</title>
+    <style>
+        .container {
+            margin: 20px;
+            padding: 50px;
+            border: 1px solid #ccc;
+        }
+        .result {
+            margin-top: 30px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Калькулятор -->
+    <div class="container">
+        <h3>1. Калькулятор</h3>
+        <input type="number" id="num1" placeholder="Первое число">
+        <select id="operation">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="num2" placeholder="Второе число">
+        <button onclick="calculate()">Вычислить</button>
+        <div id="calcResult" class="result"></div>
+    </div>
+
+    <!-- Проверка условий -->
+    <div class="container">
+        <h3>2. Проверка возраста</h3>
+        <input type="number" id="age" placeholder="Введите возраст">
+        <button onclick="checkAge()">Проверить</button>
+        <div id="ageResult" class="result"></div>
+    </div>
+
+    <!-- Проверка палиндрома -->
+    <div class="container">
+        <h3>3. Проверка палиндрома</h3>
+        <input type="text" id="surname" placeholder="Введите фамилию">
+        <button onclick="checkPalindrome()">Проверить</button>
+        <div id="palindromeResult" class="result"></div>
+    </div>
+
+    <!-- Среднее значение массива -->
+    <div class="container">
+        <h3>4. Среднее значение массива</h3>
+        <input type="text" id="arrayInput" placeholder="Введите числа через запятую">
+        <button onclick="calculateAverage()">Вычислить среднее</button>
+        <div id="averageResult" class="result"></div>
+    </div>
+
+    <!-- Дни до Нового года -->
+    <div class="container">
+        <h3>5. Дни до Нового года</h3>
+        <button onclick="daysUntilNewYear()">Показать</button>
+        <div id="newYearResult" class="result"></div>
+    </div>
+
+    <!-- Работа с массивом -->
+    <div class="container">
+        <h3>7. Операции с массивом</h3>
+        <input type="text" id="arrayOperations" placeholder="Введите числа через запятую">
+        <button onclick="processArray()">Обработать</button>
+        <div id="arrayResults" class="result"></div>
+    </div>
+
+    <!-- Фильтр email -->
+    <div class="container">
+        <h3>8. Фильтр email</h3>
+        <input type="text" id="emailFilter" placeholder="Введите часть email для поиска">
+        <button onclick="filterEmails()">Фильтровать</button>
+        <div id="emailResults" class="result"></div>
+    </div>
+
+    <script>
+        // 1. Калькулятор
+        const calculate = () => {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+            const operation = document.getElementById('operation').value;
+            
+            const operations = {
+                '+': (a, b) => a + b,
+                '-': (a, b) => a - b,
+                '*': (a, b) => a * b,
+                '/': (a, b) => b !== 0 ? a / b : 'Деление на ноль!'
+            };
+            
+            document.getElementById('calcResult').textContent = 
+                `Результат: ${operations[operation](num1, num2)}`;
+        };
+
+        // 2. Проверка возраста
+        const checkAge = function() {
+            const age = document.getElementById('age').value;
+            const result = age >= 18 ? 'Совершеннолетний' : 'Несовершеннолетний';
+            document.getElementById('ageResult').textContent = result;
+        };
+
+        // 3. Проверка палиндрома
+        const checkPalindrome = () => {
+            const surname = document.getElementById('surname').value;
+            const isPalindrome = surname.toLowerCase() === 
+                surname.toLowerCase().split('').reverse().join('');
+            document.getElementById('palindromeResult').textContent = 
+                isPalindrome ? 'Это палиндром' : 'Это не палиндром';
+        };
+
+        // 4. Среднее значение массива
+        const calculateAverage = () => {
+            const numbers = document.getElementById('arrayInput').value
+                .split(',')
+                .map(num => parseFloat(num.trim()));
+            const avg = numbers.reduce((a, b) => a + b, 0) / numbers.length;
+            document.getElementById('averageResult').textContent = `Среднее: ${avg}`;
+        };
+
+        // 5. Дни до Нового года
+        const daysUntilNewYear = () => {
+            const today = new Date();
+            const newYear = new Date(today.getFullYear() + 1, 0, 1);
+            const daysLeft = Math.ceil((newYear - today) / (1000 * 60 * 60 * 24));
+            document.getElementById('newYearResult').textContent = 
+                `До Нового года осталось: ${daysLeft} дней`;
+        };
+
+        // 6. Пустая функция
+        const emptyFunction = () => undefined;
+
+        // 7. Операции с массивом
+        const processArray = () => {
+            const numbers = document.getElementById('arrayOperations').value
+                .split(',')
+                .map(num => parseFloat(num.trim()));
+            
+            const sum = numbers.reduce((a, b) => a + b, 0);
+            const even = numbers.filter(num => num % 2 === 0);
+            const doubled = numbers.map(num => num * 2);
+            
+            document.getElementById('arrayResults').innerHTML = 
+                `Сумма: ${sum}<br>Четные: ${even.join(', ')}<br>Удвоенные: ${doubled.join(', ')}`;
+        };
+
+        // 8. Фильтр email
+        const emails = [
+            'test@mail.ru', 'example@gmail.com', 
+            'user@yandex.ru', 'admin@mail.ru'
+        ];
+
+        const filterEmails = () => {
+            const filter = document.getElementById('emailFilter').value.toLowerCase();
+            const filtered = emails.filter(email => 
+                email.toLowerCase().includes(filter)
+            );
+            document.getElementById('emailResults').innerHTML = 
+                filtered.join('<br>');
+        };
+    </script>
+</body>
+</html>
