@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задачи с функциями высшего порядка</title>
+    <style>
+        .task {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="task">
+        <h3>Задача 1: Увеличение элементов массива</h3>
+        <input type="text" id="task1Input" placeholder="Введите числа через запятую">
+        <button onclick="task1()">Выполнить</button>
+        <div id="task1Result" class="result"></div>
+    </div>
+
+    <div class="task">
+        <h3>Задача 2: Расчет возраста</h3>
+        <input type="text" id="task2Input" placeholder="Введите годы рождения через запятую">
+        <button onclick="task2()">Выполнить</button>
+        <div id="task2Result" class="result"></div>
+    </div>
+
+    <div class="task">
+        <h3>Задача 3: Проверка прав доступа</h3>
+        <div id="task3Result" class="result"></div>
+        <button onclick="task3()">Показать админов</button>
+    </div>
+
+    <div class="task">
+        <h3>Задача 4: Средний балл студентов</h3>
+        <input type="text" id="task4Input" placeholder="Введите оценки через запятую">
+        <button onclick="task4()">Вычислить</button>
+        <div id="task4Result" class="result"></div>
+    </div>
+
+    <div class="task">
+        <h3>Задача 5: Проверка длины строк</h3>
+        <input type="text" id="task5Input" placeholder="Введите слова через запятую">
+        <button onclick="task5()">Проверить</button>
+        <div id="task5Result" class="result"></div>
+    </div>
+
+    <script>
+        function task1() {
+            const input = document.getElementById('task1Input').value;
+            const arr1 = input.split(',').map(Number);
+            const increased = arr1.map(item => item + 10);
+            const multiplied = arr1.map(item => item * 3);
+            
+            document.getElementById('task1Result').innerHTML = 
+                `Увеличенные на 10: [${increased}]<br>
+                 Умноженные на 3: [${multiplied}]`;
+        }
+
+        function task2() {
+            const input = document.getElementById('task2Input').value;
+            const birthYears = input.split(',').map(Number);
+            const currentYear = new Date().getFullYear();
+            const ages = birthYears.map(year => currentYear - year);
+            
+            document.getElementById('task2Result').innerHTML = 
+                `Возраст: [${ages}]`;
+        }
+
+        function task3() {
+            const persons = [
+                { name: 'Мишаня', age: 16, isAdmin: false },
+                { name: 'Дырчик', age: 18, isAdmin: true },
+                { name: 'Бородач', age: 27, isAdmin: true },
+                { name: 'Яна', age: 14, isAdmin: false },
+                { name: 'Карпюшок', age: 24, isAdmin: true }
+            ];
+            
+            const admins = persons.filter(person => person.isAdmin && person.age >= 18);
+            document.getElementById('task3Result').innerHTML = 
+                `Администраторы: ${admins.map(admin => admin.name).join(', ')}`;
+        }
+
+        function task4() {
+            const input = document.getElementById('task4Input').value;
+            const grades = input.split(',').map(Number);
+            const average = grades.reduce((acc, curr) => acc + curr, 0) / grades.length;
+            
+            document.getElementById('task4Result').innerHTML = 
+                `Средний балл: ${average.toFixed(2)}`;
+        }
+
+        function task5() {
+            const input = document.getElementById('task5Input').value;
+            const words = input.split(',').map(word => word.trim());
+            
+            function mapForEach(arr, fn) {
+                const newArray = [];
+                for(let i = 0; i < arr.length; i++) {
+                    newArray.push(fn(arr[i]));
+                }
+                return newArray;
+            }
+            
+            const result = mapForEach(words, word => word.length <= 3 ? 0 : 1);
+            document.getElementById('task5Result').innerHTML = 
+                `Результат: [${result}]`;
+        }
+    </script>
+</body>
+</html>
