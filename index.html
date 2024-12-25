@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Путешествия по миру</title>
+    <link rel="stylesheet" href="./styles/style1.css">
+</head>
+<body class="page">
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="header__logo">
+            <img width="50" height="100px" src="./images/travel.jpg" alt="Логотип" class="header__logo-img">
+        </div>
+        <nav class="header__nav nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="index.html" class="nav__link nav__link_active">Главная</a>
+                </li>
+                <li class="nav__item">
+                    <a href="destinations.html" class="nav__link">Направления</a>
+                </li>
+                <li class="nav__item">
+                    <a href="nauka.html" class="nav__link">Наука</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="main">
+        <!-- Левая боковая панель -->
+        <aside class="sidebar sidebar_left">
+            <div class="sidebar__widget">
+                <h3 class="sidebar__title">Популярные места</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item"><a href="paris.html">Париж</a></li>
+                    <li class="sidebar__item"><a href="tokyo.html">Токио</a></li>
+                    <li class="sidebar__item"><a href="new-york.html">Нью-Йорк</a></li>
+                    <li class="sidebar__item"><a href="mali.html">Мали</a></li>
+                    <li class="sidebar__item"><a href="london.html">Лондон</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Центральная часть -->
+        <section class="content">
+            <h1 class="content__title">Добро пожаловать в мир путешествий</h1>
+            <div class="content__cards">
+                <article class="card">
+                    <img src="./images/Paris.jpg" alt="Париж" class="card__image">
+                    <h2 class="card__title">Париж</h2>
+                    <p class="card__text">Город любви и романтики</p>
+                </article>
+                <article class="card">
+                    <img src="./images/Tokyo.jpg" alt="Токио" class="card__image">
+                    <h2 class="card__title">Токио</h2>
+                    <p class="card__text">Современные технологии и традиции</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Правая боковая панель -->
+        <aside class="sidebar sidebar_right">
+            <div class="sidebar__widget">
+                <h3 class="sidebar__title">Последние новости</h3>
+                <ul class="sidebar__list">
+                    <li class="sidebar__item">Открытие новых направлений</li>
+                    <li class="sidebar__item">Специальные предложения</li>
+                    <li class="sidebar__item">Советы путешественникам</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__column">
+                <h3 class="footer__title">Контакты</h3>
+                <p class="footer__text">Email: info@travel.com</p>
+                <p class="footer__text">Телефон: +7 (999) 123-45-67</p>
+            </div>
+            <div class="footer__column">
+                <h3 class="footer__title">Социальные сети</h3>
+                <ul class="footer__social">
+                    <li class="footer__social-item">
+                        <a href="#" class="footer__social-link">Facebook</a>
+                    </li>
+                    <li class="footer__social-item">
+                        <a href="#" class="footer__social-link">Instagram</a>
+                    </li>
+                    <li class="footer__social-item">
+                        <a href="#" class="footer__social-link">Twitter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <p class="footer__copyright">© 2024 Путешествия по миру. Все права защищены.</p>
+    </footer>
+</body>
+</html>
